@@ -10,8 +10,8 @@ export class CustomerEmail {
     email: string;
   
     @Column()
-    userId: number;
+    customerId: number;
   
     @ManyToOne(() => Customer, (customer) => customer.additionalEmails)
-    user: Customer;
+    customer: Customer;
 }

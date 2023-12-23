@@ -29,18 +29,18 @@ import {
     @UpdateDateColumn({ type: "date" })
     updatedAt: string | Date;
   
-    @OneToMany(() => CustomerEmail, (email) => email.user, {
+    @OneToMany(() => CustomerEmail, (email) => email.customer, {
       cascade: true,
       eager: true,
     })
-    @JoinColumn({ name: "userId" })
+    @JoinColumn({ name: "customerId" })
     additionalEmails: CustomerEmail[];
   
-    @OneToMany(() => CustomerContact, (customerContact) => customerContact.user, {
+    @OneToMany(() => CustomerContact, (customerContact) => customerContact.customer, {
       cascade: true,
       eager: true,
     })
-    @JoinColumn({ name: "userId" })
+    @JoinColumn({ name: "customerId" })
     additionalContacts: CustomerContact[];
   }
   
