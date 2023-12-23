@@ -1,42 +1,53 @@
+import * as bcrypt from "bcryptjs";
 import {
-  BaseEntity,
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
   BeforeInsert,
   BeforeUpdate,
-  OneToMany,
+  Column,
   CreateDateColumn,
-  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
-import bcrypt from "bcryptjs";
-import { Contact } from "./contact.entities";
+import { UserContact, UserEmail } from ".";
 
 @Entity("users")
-export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
+export class User {
+  @PrimaryGeneratedColumn("increment")
   id: number;
 
-  @Column({ type: "varchar", length: 255, nullable: false })
-  full_name: string;
+  @Column({ type: "varchar", length: 60 })
+  fullName: string;
 
-  @Column({ type: "varchar", length: 255, nullable: false, unique: true })
+  @Column({ type: "varchar", length: 45, unique: true })
   email: string;
 
-  @Column({ type: "varchar", length: 255, nullable: false })
+  @Column({ type: "varchar", length: 120 })
   password: string;
 
-  @Column({ type: "varchar", length: 20, nullable: false })
-  phone_number: string;
+  @Column({ type: "varchar", length: 30 })
+  contact: string;
 
-  @CreateDateColumn({ type: "date", default: () => "CURRENT_TIMESTAMP" })
-  registration_date: string;
+  @OneToMany(() => UserEmail, (email) => email.user, {
+    cascade: true,
+    eager: true,
+  })
+  @JoinColumn({ name: "userId" })
+  additionalEmails: UserEmail[];
 
-  @DeleteDateColumn({ type: "date" })
-  delete_date: string | null;
+  @OneToMany(() => UserContact, (userContact) => userContact.user, {
+    cascade: true,
+    eager: true,
+  })
+  @JoinColumn({ name: "userId" })
+  additionalContacts: UserContact[];
 
-  @OneToMany(() => Contact, (contact) => contact.user, { nullable: true })
-  contacts: Contact[];
+  @CreateDateColumn({ type: "date" })
+  createdAt: string | Date;
+
+  @UpdateDateColumn({ type: "date" })
+  updatedAt: string | Date;
 
   @BeforeInsert()
   hashUserPassword() {
