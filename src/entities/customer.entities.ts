@@ -17,7 +17,7 @@ import {
     @Column({ type: "varchar", length: 60 })
     fullName: string;
   
-    @Column({ type: "varchar", length: 45, unique: true })
+    @Column({ type: "varchar", length: 45, unique: false })
     email: string;
   
     @Column({ type: "varchar", length: 30 })

@@ -48,7 +48,7 @@ const userEmailRequestSchema = userSchema.pick({
   email: true,
 });
 
-const userReadSchema = userReturnSchema.array();
+const userReadSchema = userReturnSchema;
 
 const userUpdateSchema = userReturnSchema.partial();
 
