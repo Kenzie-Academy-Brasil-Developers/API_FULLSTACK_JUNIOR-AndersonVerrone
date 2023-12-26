@@ -3,13 +3,13 @@ import { z } from "zod";
 const customerEmailSchema = z.object({
   id: z.number(),
   email: z.string().max(45),
-  customerId: z.number(),
+  customer: z.number(),
 });
 
 const customerContactSchema = z.object({
   id: z.number(),
   phoneNumber: z.string().max(45),
-  customerId: z.number(),
+  customer: z.number(),
 });
 
 const customerSchema = z.object({
@@ -33,10 +33,12 @@ const customerCreateSchema = customerSchema.omit({
 
 const customerEmailCreateSchema = customerEmailSchema.omit({
   id: true,
+  customer: true,
 });
 
 const customerContactCreateSchema = customerContactSchema.omit({
   id: true,
+  customer: true,
 });
 
 const customerReturnSchema = customerSchema;

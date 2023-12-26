@@ -7,10 +7,7 @@ export class CustomerContact {
     id: number;
 
     @Column({ type: "varchar", length: 15 })
-    phoneNumber: string; // Número de telefone do contato adicional
-
-    @Column()
-    customerId: number;
+    phoneNumber: string;
 
     @ManyToOne(() => Customer, (customer) => customer.additionalContacts)
     customer: Customer;

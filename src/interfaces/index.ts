@@ -9,6 +9,8 @@ import {
   ICustomerReturn,
   ICustomerRead,
   ICustomerUpdate,
+  ICustomerContactsReturn,
+  ICustomerEmailsReturn,
 } from "./customer.interfaces";
 
 import { 
@@ -27,6 +29,8 @@ import {
   IUserReturn,
   IUserRead,
   IUserUpdate,
+  IUserContactsReturn,
+  IUserEmailsReturn,
 } from "./user.interfaces";
 
 export {
@@ -52,4 +56,8 @@ export {
   ICustomerReturn,
   ICustomerRead,
   ICustomerUpdate,
+  IUserContactsReturn,
+  IUserEmailsReturn,
+  ICustomerContactsReturn,
+  ICustomerEmailsReturn,
 };

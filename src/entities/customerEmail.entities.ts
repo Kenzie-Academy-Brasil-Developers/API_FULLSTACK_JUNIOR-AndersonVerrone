@@ -9,9 +9,6 @@ export class CustomerEmail {
     @Column({ type: "varchar", length: 45 })
     email: string;
   
-    @Column()
-    customerId: number;
-  
     @ManyToOne(() => Customer, (customer) => customer.additionalEmails)
     customer: Customer;
 }
